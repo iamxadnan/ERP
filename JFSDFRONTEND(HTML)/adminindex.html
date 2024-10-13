@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+
+   
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        position: relative;
+    }
+
+   
+    .large-circle {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background-color: #ccc;
+        position: absolute;
+        top: -100px;
+        left: -100px;   
+        z-index: -1;
+    }
+
+   
+    .circle img {
+        width: 120px;
+        height: auto;
+        position: absolute;
+        top: 10px;
+        left: 5px;
+    }
+
+    /* Navigation Links and Logout Button */
+    .headerNav {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        justify-content: flex-end;
+    }
+
+    .headerNav a {
+        margin: 0 15px;
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .headerNav a:hover {
+        color: #333;
+    }
+
+    .headerNav .logout {
+        background-color: #000;
+        color: rgb(3, 0, 0);
+        padding: 8px 5px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    .headerNav .logout:hover {
+        background-color: #040000;
+    }
+
+    /* Profile Section */
+    .profile {
+        display: flex;
+        align-items: center;
+        gap: 0px;
+    }
+
+    .profile img {
+        width: 100px;
+        height: 100px;
+        border-radius: 70%;
+    }
+
+    .profile-name {
+        font-weight: bold;
+        color: black;
+    }
+
+    /* Welcome Section */
+    .welcome {
+        text-align: left;
+        margin: 30px 80px;
+    }
+
+    .welcome h1 {
+        font-size: 30px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Navigation Bar */
+    .nav-bar {
+        display: flex;
+        justify-content: space-around;
+        background-color: #000;
+        padding: 8px 10px;
+        border-radius: 45px;
+        width: 91%;
+        margin: 0 auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: -25px;
+    }
+
+    .nav1 a {
+        justify-content: space-around;
+        font-family: 'Poppins', sans-serif;
+        color: black;
+        padding: 30px 35px;
+        text-decoration: none;
+        font-weight: normal;
+    }
+
+    .logout {
+        justify-content: space-around;
+        color: white;
+        border-radius: 50px;
+        font-weight: bold;
+        background-color: black;
+    }
+
+    .nav-bar a {
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        padding: 8px 10px;
+        font-style: oblique;
+        text-decoration: none;
+        font-weight: normal;
+    }
+
+    .nav-bar a:hover {
+        background-color: #333;
+    }
+
+    /* Card Section */
+    .card-container {
+        display: flex;
+        flex-direction: row; /* Align cards in a row */
+        align-items: flex-start; /* Align to the top */
+        margin: 70px 250px; /* Reduced margin */
+        gap: 150px; /* Add space between cards */
+        width: calc(100% - 250px); /* Leave room for sidebar */
+    }
+
+    .card {
+        background-color: #6c6d6d;
+        color: white;
+        display: flex;
+        padding: 10px;
+        border-radius: 10px;
+        width: 450px;
+        height: 200px;
+        justify-content: space-between;
+        align-items: center;
+        border: 3px solid black;
+        margin-left: -100px;
+    }
+
+    .card img {
+        width: 250px;
+        height: auto;
+        margin-right: 10px;
+    }
+
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .card-content h3 {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    .card button {
+        background-color: black;
+        color: white;
+        padding: 8px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 25px;
+    }
+
+    .card button:hover {
+        background-color: #333;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        position: absolute;
+        top: 280px;
+        right: 75px; /* Moved closer to the cards */
+        background-color: white;
+        border-radius: 9px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 16px;
+        width: 170px;
+    }
+
+    .sidebar a {
+        display: flex;
+        text-align: center;
+        margin: 35px -15px;
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .sidebar a:hover {
+        color: #666;
+    }
+
+    .sidebar img {
+        width: 95px;
+    }
+</style>
+<body>
+
+    <!-- Header with large circle -->
+    <div class="header">
+        <div class="large-circle"></div>
+        <div class="circle">
+            <img src="images/logo-removebg-preview.png" alt="Logo">
+        </div>
+        <div class="nav1">
+        <nav>
+            <a href="adminindex.html">HOME</a>
+            <a href="#">ABOUT US</a>
+            <a href="#">SERVICE</a>
+            <button class="logout">LOGOUT</button>
+        </nav>
+        </div>
+        <!-- Profile Section on the right -->
+        <div class="profile">
+            <img src="images/profile.png" alt="Profile">
+        </div>
+    </div>
+
+    <!-- Welcome Section -->
+    <div class="welcome">
+        <h1>WELCOME, ADMIN</h1>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <a href="#">BASIC OPERATIONS</a>
+        <a href="#">STUDENT SERVICES</a>
+        <a href="#">FACULTY SERVICES</a>
+        <a href="notification.html">NOTIFICATIONS</a>
+        <a href="#">OTHER OPERATIONS</a>
+    </div>
+
+    <div class="card-container">
+        <div class="card">
+            <img src="images/content.png" alt="profile">
+            <div class="card-content">
+                <h3>VIEW STUDENT PROFILES</h3>
+                <button onclick="location.href='studentPro.html'">ACCESS</button>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/content.png" alt="profile">
+            <div class="card-content">
+                <h3>VIEW FACULTY PROFILES</h3>
+                <button onclick="location.href='facultyPro.html'">ACCESS</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#"><img src="images/bell.png" alt="Pending Requests">PENDING REQUESTS</a>
+        <a href="#"><img src="images/calender.png" alt="Upcoming Events">UPCOMING EVENTS</a>
+        <a href="#"><img src="images/recents.png" alt="Recents">RECENTS</a>
+    </div>
+
+</body>
+</html>

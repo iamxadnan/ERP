@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background-color: transparent;
+            position: relative;
+        }
+
+        .logo img {
+            width: 50px;
+            margin-left: -25px;
+            transition: transform 0.5s ease;
+        }
+
+        .logo img:hover {
+            transform: rotate(360deg); /* Rotate logo on hover */
+        }
+
+        .large-circle {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-color: #ccc;
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            z-index: -1;
+        }
+
+        /* Image inside the circle */
+        .circle img {
+            width: 120px;
+            height: auto;
+            position: absolute;
+            top: 10px;
+            left: 5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin-top: 5px;
+            margin-right: -60px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
+            transition: color 0.3s ease, font-size 0.3s ease, transform 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #8b5e3c;
+            font-size: 19px;
+            transform: scale(1.1); /* Slight zoom on hover */
+        }
+
+        .sign-in-btn {
+            padding: 8px 16px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .sign-in-btn:hover {
+            background-color: #8b5e3c;
+            transform: scale(1.1) rotate(3deg); /* Hover effect with slight rotation */
+        }
+
+        main {
+            margin-top: 5px;
+            background-color:transparent;
+        }
+
+        main h1 {
+            margin-left: 10pc;
+            color: black;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+       
+
+        .profile img {
+            margin-right: -40px;
+            margin-top: 5px;
+            height: 120px;
+            transition: transform 0.5s ease;
+        }
+
+        .profile img:hover {
+            transform: scale(1.2); /* Enlarge profile picture slightly on hover */
+        }
+
+        .mainnav {
+            margin-left: 50px;
+            margin-right: 20px;
+            background-color: black;
+            padding: 15px;
+            width: 90%;
+            border: 5px solid gray;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mainnav:hover {
+            transform: translateY(-3px); /* Elevates slightly on hover */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .ulo {
+            justify-content: center;
+            list-style: none;
+            display: flex;
+            gap: 100px;
+        }
+
+        .lio a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+
+        .lio a:hover {
+            background-color: lightgray;
+            color: black;
+            border-radius: 20px;
+            transform: scale(1.1); /* Slight zoom on hover */
+        }
+
+        /* Container for left and right sections */
+        .container {
+            display: flex;
+            align-items: center;  
+            width: 80%;
+            gap:40px;
+            padding: 30px;
+            opacity: 0.9; /* Slight transparency */
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            margin-left: 135px;
+        }
+
+        .container:hover {
+            opacity: 1; /* Fully opaque on hover */
+            transform: scale(1.02); /* Slight zoom on hover */
+        }
+
+        .left, .right {
+            flex: 1;
+            background-color: #6c6d6d;
+            border-radius: 15px;
+            border: 2px solid black;
+            height: 300px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .left:hover, .right:hover {
+            transform: translateY(-10px); /* Moves up on hover */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Add shadow */
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: row;
+        }
+
+
+        .progress-circle {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            transition: transform 0.5s ease;
+        }
+       
+
+       
+
+        .text {
+            font-size: 17px;
+            text-align: left;
+            max-width: 250px;
+        }
+
+        .text h2 {
+            margin-top: 0;
+            font-size: 23px;
+            margin-bottom: 60px;
+            transition: color 0.3s ease;
+        }
+
+        
+
+        .text span {
+            font-weight: bold;
+            font-size: 20px;
+            transition: color 0.3s ease;
+            color:rgb(184, 11, 11);
+        }
+
+        .text span:hover {
+            color: darkgoldenrod; /* Green text on hover */
+        }
+
+        .right h2 {
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .right h2:hover {
+            transform: translateX(10px); /* Slide title to the right on hover */
+        }
+
+        .right ul {
+            list-style: none;
+            padding-left: 0;
+            font-size: 18px;
+            font-weight: bold;
+            color:black;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .right ul li {
+            margin-bottom: 10px;
+        }
+
+        .right ul li::before {
+            content: '•';
+            color: white;
+            margin-right: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .right ul li:hover {
+            transform: translateX(5px); /* Slight shift to the right */
+           /* Change color on hover */
+        }
+    .upcoming-classes, .important-days {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+    .upcoming-classes{
+        width: 100%;
+        
+        max-width: 1300px;
+    }
+    .class-box{
+        height:300px;
+    }
+
+    .class-box, .important-box {
+        background-color: #6c6d6d;
+        color: white;
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid black;
+        text-align: center;
+        width: 100%;
+        max-width: 1300px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .class-box:hover, .important-days:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    .class-box h1{
+        margin-top:100px;
+        margin-right:400px;
+
+    }
+    .important-days h1{
+        color:white;
+        margin-top:30px;
+        margin-right:600px;
+    }
+    .class-box h1, .important-box h1 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        color: white;
+    }
+   
+    .important-box{
+        margin-left:700px;
+        margin-top:-200px;
+        color:white;
+        width:fit-content;
+        background-color: black;
+        border:2px solid white;
+        border-radius: 20px;
+    }
+
+    .class-info {
+        font-size: 25px;
+        margin: 5px 10px;
+        margin-left: 800px;
+        margin-top:-230px;
+        display:grid;
+        justify-content: center;
+        align-items: center;
+        width:30%;
+        height:180px;
+        color:white;
+        background-color: black;
+        border:2px solid white;
+        border-radius: 20px;
+    }
+    .class-box img{
+        display:grid;
+        margin-left:35px;
+        margin-top:-115px;
+    }
+
+    .important-box ul {
+        list-style: none;
+        padding: 0;
+    }
+    .important-days{    
+        background-color: grey;
+        border:2px solid black;
+        border-radius: 20px;
+        width: 100%;
+        height:300px;
+        max-width: 1300px;
+        margin-left:60px;
+    }
+    .important-days h1{
+        margin-left:600px;
+    }
+    .important-days img{
+        margin-top:-120px;
+        margin-right: 800px;;
+    }
+
+    .important-box li {
+        font-size: 1.2em;
+        margin-bottom: 5px;
+    }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="large-circle"></div> <!-- Large circle -->
+        <div class="circle">
+            <img src="images/logo-removebg-preview.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="facultyhome.html">Faculty Home</a></li>
+                <li><a href="studenthome.html">Student Home</a></li>
+                <li><a href="Login.html" class="sign-in-btn">Sign In</a></li>
+                
+            </ul>
+        </nav>
+    <div class="profile">
+        <img src="/images/profile.png" alt="Profile">
+    </div>
+</header>
+
+<main>
+    <h1>Good Morning</h1>
+<br>
+<br>
+    <!-- Secondary Navigation -->
+    <nav class="mainnav">
+        <ul class="ulo">
+            <li class="lio"><a href="#">BASIC OPERATIONS</a></li>
+            <li class="lio"><a href="#">ACADEMICS</a></li>
+            <li class="lio"><a href="#">EXAM SECTION</a></li>
+            <li class="lio"><a href="#">HOSTEL</a></li>
+            <li class="lio"><a href="#">TICKET ISSUES</a></li>
+        </ul>
+    </nav>
+
+    <!-- Left and Right Sections -->
+    <div class="container">
+        <!-- Left Section (Attendance with graph) -->
+        <div class="left">
+            <div class="progress-circle" id="progress-circle">
+                <h1 style="font-size: 150px;">7</h1>
+            </div>
+            <div class="text" id="attendance-message">
+                <h2>LEAVES REMAINING</h2>
+                <span>INCLUDING ALL KINDS OF LEAVES</span>
+            </div>
+        </div>
+
+        <!-- Right Section (News and Announcements) -->
+        <div class="right">
+            <h2>NEWS AND ANNOUNCEMENTS</h2>
+            <ul>
+                <li>SIL Activities are being conducted from today</li>
+                <li>COURSERA FEE Reminder</li>
+                <li>Insem exams are going to be conducted this week</li>
+                <li>Samyak dates – Oct 4 and 5</li>
+            </ul>
+        </div>
+      
+    </div>  <!-- Add the upcoming classes and important days sections -->
+    <div class="container">
+        <!-- Upcoming Classes Section -->
+        <div class="upcoming-classes">
+            <div class="class-box">
+                <h1>UPCOMING CLASSES TODAY</h1>
+                <img src="images/class.png" alt="Profile">
+                <div class="class-info" style="margin-right: 30px;">
+                    <p>22DB2202-DBMS</p>
+                    <p>HOUR 3&4 - R104</p>
+                    <p>SECTION-14</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="container">
+        <!-- Left Section (Attendance with graph) -->
+        <div class="left">
+            <div class="progress-circle" id="progress-circle">
+                <img src="images/studentsprofile.png" alt="Counselling Image">
+            </div>
+            <div class="text" id="attendance-message">
+                <h2>VIEW STUDENTS PROFILE</h2>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Right Section (News and Announcements) -->
+        <style>
+            .progress-circle img {
+                width: 2000px;  /* Adjust the size as needed */
+                height: 200px;  /* Keeps the aspect ratio */
+            }
+        </style>
+        
+        <div class="left">
+            <div class="progress-circle" id="progress-circle">
+                <img src="images/counselling.png" alt="Counselling Image">
+            </div>
+            <div class="text" id="attendance-message">
+                <h2>VIEW STUDENTS PROFILE</h2>
+                <span></span>
+            </div>
+        </div>
+        
+      
+    </div>
+    </div>
+</main>
+
+
+
+</body>
+</html>

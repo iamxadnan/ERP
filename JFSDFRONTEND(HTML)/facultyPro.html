@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Profiles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: relative;
+        }
+
+        /* Large Circle */
+        .large-circle {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-color: #ccc;
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            z-index: -1;
+        }
+
+        /* Image inside the circle */
+        .circle img {
+            width: 120px;
+            height: auto;
+            position: absolute;
+            top: 10px;
+            left: 5px;
+        }
+
+        /* Navigation Links and Logout Button */
+        .headerNav {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: flex-end;
+        }
+
+        .headerNav a {
+            margin: 0 15px;
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .headerNav a:hover {
+            color: #333;
+        }
+
+        .headerNav .logout {
+            background-color: #000;
+            color: rgb(3, 0, 0);
+            padding: 8px 5px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .headerNav .logout:hover {
+            background-color: #040000;
+        }
+
+        /* Welcome Section */
+        .welcome {
+            text-align: left;
+            margin: 30px 80px;
+        }
+
+        .welcome h1 {
+            font-size: 30px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .nav1 a {
+            justify-content: space-around;
+            font-family: 'Poppins', sans-serif;
+            color: black;
+            padding: 30px 35px;
+            text-decoration: none;
+            font-weight: normal;
+        }
+
+        .logout {
+            justify-content: space-around;
+            color: white;
+            border-radius: 50px;
+            font-weight: bold;
+            background-color: black;
+        }
+
+        /* Profile Section */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 0px;
+        }
+
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 70%;
+        }
+
+        .profile-name {
+            font-weight: bold;
+            color: black;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #000;
+            padding: 8px 10px;
+            border-radius: 45px;
+            width: 91%;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: -25px;
+        }
+
+        .nav-bar a {
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            padding: 8px 10px;
+            font-style: oblique;
+            text-decoration: none;
+            font-weight: normal;
+        }
+
+        .nav-bar a:hover {
+            background-color: #333;
+        }
+
+        /* Faculty List Section */
+        .faculty-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 50px 0;
+        }
+
+        .faculty-card {
+            background-color: #4a4e69; /* Darker color for faculty cards */
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s; /* Hover effect */
+        }
+
+        .faculty-card:hover {
+            transform: scale(1.05); /* Scale effect on hover */
+        }
+
+        .percentage-bar {
+            width: 60%;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .percentage-fill {
+            height: 100%;
+            background-color: #ff6f61; /* Different color for faculty fill */
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with large circle -->
+    <div class="header">
+        <div class="large-circle"></div>
+        <div class="circle">
+            <img src="images/logo-removebg-preview.png" alt="Logo">
+        </div>
+        <div class="nav1">
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="facultyhome.html">Faculty Home</a></li>
+                    <li><a href="studenthome.html">Student Home</a></li>
+                    <li><a href="Login.html" class="sign-in-btn">Sign In</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+        <!-- Profile Section on the right -->
+        <div class="profile">
+            <img src="images/profile.png" alt="Profile">
+        </div>
+    </div>
+
+    <!-- Welcome Section -->
+    <div class="welcome">
+        <h1>FACULTY PROFILES</h1>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <a href="#">BASIC OPERATIONS</a>
+        <a href="#">STUDENT SERVICES</a>
+        <a href="#">FACULTY SERVICES</a>
+        <a href="notification.html">NOTIFICATIONS</a>
+        <a href="#">OTHER OPERATIONS</a>
+    </div>
+
+    <!-- Faculty List Section -->
+    <div class="faculty-list" id="facultyList"></div>
+
+    <script>
+        // Function to generate random faculty members
+        function generateRandomFaculty(numFaculty) {
+            const facultyList = document.getElementById('facultyList');
+            facultyList.innerHTML = ''; // Clear existing content
+
+            for (let i = 0; i < numFaculty; i++) {
+                const facultyName = `Faculty Member ${i + 1}`;
+                const percentage = Math.floor(Math.random() * 101); // Random percentage between 0 and 100
+
+                const facultyCard = document.createElement('div');
+                facultyCard.className = 'faculty-card';
+
+                const nameElement = document.createElement('span');
+                nameElement.textContent = facultyName;
+
+                const percentageElement = document.createElement('div');
+                percentageElement.className = 'percentage-bar';
+
+                const fillElement = document.createElement('div');
+                fillElement.className = 'percentage-fill';
+                fillElement.style.width = percentage + '%'; // Set width based on percentage
+
+                percentageElement.appendChild(fillElement);
+                facultyCard.appendChild(nameElement);
+                facultyCard.appendChild(percentageElement);
+                facultyList.appendChild(facultyCard);
+            }
+        }
+
+        // Call the function to generate a random number of faculty members (e.g., between 5 and 15)
+        const randomNumberOfFaculty = Math.floor(Math.random() * 11) + 5; // Random number between 5 and 15
+        generateRandomFaculty(randomNumberOfFaculty);
+    </script>
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+    background-image: url('images/background.jpg');
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-attachment: fixed; /* Make the background fixed, only the content scrolls */
+    color: #333;
+    overflow-x: hidden;
+}
+
+
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background-color: transparent;
+            position: relative;
+        }
+
+        .logo img {
+            width: 50px;
+            margin-left: -25px;
+            transition: transform 0.5s ease;
+        }
+
+        .logo img:hover {
+            transform: rotate(360deg); /* Rotate logo on hover */
+        }
+
+        .large-circle {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-color: #494949;
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            z-index: -1;
+        }
+
+        /* Image inside the circle */
+        .circle img {
+            width: 120px;
+            height: auto;
+            position: absolute;
+            top: 10px;
+            left: 5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin-top: 5px;
+            margin-right: -60px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
+            transition: color 0.3s ease, font-size 0.3s ease, transform 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffffff;
+            font-size: 19px;
+            transform: scale(1.1); /* Slight zoom on hover */
+        }
+
+        .sign-in-btn {
+            padding: 8px 16px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .sign-in-btn:hover {
+            background-color: #000000;
+            transform: scale(1.1) rotate(3deg); /* Hover effect with slight rotation */
+        }
+
+        main {
+            margin-top: 5px;
+            background-color:transparent;
+        }
+
+        main h1 {
+            margin-left: 10pc;
+            color: black;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+       
+
+        .profile img {
+            margin-right: -40px;
+            margin-top: 5px;
+            height: 120px;
+            transition: transform 0.5s ease;
+        }
+
+        .profile img:hover {
+            transform: scale(1.2); /* Enlarge profile picture slightly on hover */
+        }
+
+        .mainnav {
+            margin-left: 50px;
+            margin-right: 20px;
+            background-color: black;
+            padding: 15px;
+            width: 90%;
+            border: 3px solid rgb(255, 255, 255);
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mainnav:hover {
+            transform: translateY(-3px); /* Elevates slightly on hover */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .ulo {
+            justify-content: center;
+            list-style: none;
+            display: flex;
+            gap: 100px;
+        }
+
+        .lio a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+
+        .lio a:hover {
+            background-color: lightgray;
+            color: black;
+            border-radius: 20px;
+            transform: scale(1.1); /* Slight zoom on hover */
+        }
+
+        /* Container for left and right sections */
+        .container {
+            display: flex;
+            align-items: center;  
+            width: 85%;
+            gap:40px;
+            padding: 30px;
+            opacity: 0.9; /* Slight transparency */
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            margin-left: 115px;
+        }
+
+        .container:hover {
+            opacity: 1; /* Fully opaque on hover */
+            transform: scale(1.02); /* Slight zoom on hover */
+        }
+
+        .left, .right {
+            flex: 1;
+            border-radius: 15px;
+            border: 2px solid black;
+            height: 300px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1); /* Slight transparency for elements */
+            backdrop-filter: blur(10px); /* Always blur the background */
+            -webkit-backdrop-filter: blur(10px); /* For Safari */
+            color: rgb(255, 255, 255); /* Text readable on frosted background */
+            border: 2px solid rgba(255, 255, 255, 0.2); /* Subtle border for visual depth */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 1; /* Ensure it's above the container */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .left:hover, .right:hover {
+            transform: translateY(-10px); /* Moves up on hover */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Add shadow */
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: row;
+        }
+
+
+        .progress-circle {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            transition: transform 0.5s ease;
+        }
+       
+
+       
+
+        .text {
+            font-size: 17px;
+            text-align: left;
+            max-width: 250px;
+        }
+
+        .text h2 {
+            margin-top: 0;
+            font-size: 23px;
+            margin-bottom: 60px;
+            transition: color 0.3s ease;
+        }
+
+        
+
+        .text span {
+            font-weight: bold;
+            font-size: 20px;
+            transition: color 0.3s ease;
+            color:darkgoldenrod;
+        }
+
+        .text span:hover {
+            color: darkgoldenrod; /* Green text on hover */
+        }
+
+        .right h2 {
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .right h2:hover {
+            transform: translateX(10px); /* Slide title to the right on hover */
+        }
+
+        .right ul {
+            list-style: none;
+            padding-left: 0;
+            font-size: 18px;
+            font-weight: bold;
+            color:rgb(201, 201, 201);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .right ul li {
+            margin-bottom: 10px;
+        }
+
+        .right ul li::before {
+            content: '•';
+            color: white;
+            margin-right: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .right ul li:hover {
+            transform: translateX(5px); /* Slight shift to the right */
+           /* Change color on hover */
+        }
+    .upcoming-classes, .important-days {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+    .important-days{
+        margin-left: 100px;
+    }
+    .upcoming-classes{
+        width: 100%;
+        
+        max-width: 1300px;
+    }
+    .class-box{
+        height:300px;
+    }
+
+    .class-box, .important-box {
+        background-color: #00000000;
+        color: white;
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid black;
+        text-align: center;
+        width: 100%;
+        max-width: 1300px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .class-box:hover, .important-days:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    .class-box h1{
+        margin-top:100px;
+        margin-right:400px;
+
+    }
+    .important-days h1{
+        color:white;
+        margin-top:30px;
+        margin-right:600px;
+    }
+    .class-box h1, .important-box h1 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        color: white;
+    }
+   
+    .important-box{
+        margin-left:700px;
+        margin-top:-200px;
+        color:white;
+        width:fit-content;
+        background-color: black;
+        border:2px solid white;
+        border-radius: 20px;
+    }
+
+    .class-info {
+        font-size: 25px;
+        margin: 5px 10px;
+        margin-left: 800px;
+        margin-top:-230px;
+        display:grid;
+        justify-content: center;
+        align-items: center;
+        width:30%;
+        height:180px;
+        color:white;
+        background-color: black;
+        border:2px solid white;
+        border-radius: 20px;
+    }
+    .class-box img{
+        display:grid;
+        margin-left:35px;
+        margin-top:-115px;
+    }
+
+    .important-box ul {
+        list-style: none;
+        padding: 0;
+    }
+    .important-days{    
+        background-color: grey;
+        border:2px solid black;
+        border-radius: 20px;
+        width: 100%;
+        height:300px;
+        max-width: 1300px;
+        margin-left: 0px;
+    }
+    .important-days h1{
+        margin-left:600px;
+    }
+    .important-days img{
+        margin-top:-120px;
+        margin-right: 800px;;
+    }
+
+    .important-box li {
+        font-size: 1.2em;
+        margin-bottom: 5px;
+    }
+    .container {
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(10px); /* Always blur the background */
+    -webkit-backdrop-filter: blur(10px); /* Fo /* Transparent background */
+    color: rgb(255, 255, 255); /* Text readable on frosted background */
+    border: 2px solid rgba(180, 144, 144, 0); /* Subtle border for visual depth */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1; /* Make sure it's part of the normal stacking context */
+}
+
+/* Apply the backdrop-filter always */
+.left, .right, .class-box, .important-box, .important-days {
+    background-color: rgba(255, 255, 255, 0.158); /* Slight transparency for elements */
+    backdrop-filter: blur(10px); /* Always blur the background */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    color: rgb(255, 255, 255); /* Text readable on frosted background */
+    border: 2px solid rgb(255, 255, 255); /* Subtle border for visual depth */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 0; /* Ensure it's above the container */
+}
+
+/* Keep the hover effects for movement or other interactions */
+.left:hover, .right:hover, .class-box:hover, .important-box:hover, .important-days:hover {
+    transform: translateY(-10px); /* Moves up slightly on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Add shadow */
+}
+
+
+
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="large-circle"></div> <!-- Large circle -->
+        <div class="circle">
+            <img src="images/logo-removebg-preview.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="facultyhome.html">Faculty Home</a></li>
+                <li><a href="studenthome.html">Student Home</a></li>
+                <li><a href="Login.html" class="sign-in-btn">Sign In</a></li>
+                
+            </ul>
+        </nav>
+    <div class="profile">
+        <img src="/images/profile.png" alt="Profile">
+    </div>
+</header>
+
+<main>
+    <h1>Hi, Somsekhar</h1>
+<br>
+<br>
+    <!-- Secondary Navigation -->
+    <nav class="mainnav">
+        <ul class="ulo">
+            <li class="lio"><a href="#">BASIC OPERATIONS</a></li>
+            <li class="lio"><a href="#">ACADEMICS</a></li>
+            <li class="lio"><a href="#">EXAM SECTION</a></li>
+            <li class="lio"><a href="#">HOSTEL</a></li>
+            <li class="lio"><a href="#">TICKET ISSUES</a></li>
+        </ul>
+    </nav>
+
+    <!-- Left and Right Sections -->
+    <div class="container">
+        <!-- Left Section (Attendance with graph) -->
+        <div class="left">
+            <div class="progress-circle" id="progress-circle">
+                <span id="progress-text"></span>
+            </div>
+            <div class="text" id="attendance-message">
+                <h2>CURRENT SEMESTER AVERAGE ATTENDANCE</h2>
+                <span>NO WORRIES!</span>
+            </div>
+        </div>
+
+        <!-- Right Section (News and Announcements) -->
+        <div class="right">
+            <h2>NEWS AND ANNOUNCEMENTS</h2>
+            <ul>
+                <li>SIL Activities are being conducted from today</li>
+                <li>COURSERA FEE Reminder</li>
+                <li>Insem exams are going to be conducted this week</li>
+                <li>Samyak dates – Oct 4 and 5</li>
+            </ul>
+        </div>
+      
+    </div>  <!-- Add the upcoming classes and important days sections -->
+    <div class="container">
+        <!-- Upcoming Classes Section -->
+        <div class="upcoming-classes">
+            <div class="class-box">
+                <h1>UPCOMING CLASSES TODAY</h1>
+                <img src="images/class.png" alt="Profile">
+                <div class="class-info">
+                    <p>22DB2202-DBMS</p>
+                    <p>HOUR 3&4 - R104</p>
+                    <p>SECTION-14</p>
+                </div>
+            </div> 
+        </div>
+        
+    </div>
+    <div class="container">
+        <!-- Important Days Section -->
+        <div class="important-days">
+            <h1>IMPORTANT DAYS</h1>
+            <img src="images/days.png" alt="Days">
+            <div class="important-box">
+                
+                <ul>
+                    <li>3 & 4 TH OCT: SAMYAK</li>
+                    <li>21-10-24: LAB EXAMS</li>
+                    <li>28-10-24: EVADIKI TELUSU</li>
+                    <li>3 & 4 TH OCT: SAMYAK</li>
+                    <li>21-10-24: LAB EXAMS</li>
+                    <li>28-10-24: bhagath Singh jayanthi</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</main>
+
+<script>
+    // Simulating a backend percentage value
+    const percentage = 60; // This value should come from the backend
+
+    const progressText = document.getElementById('progress-text');
+    const progressCircle = document.getElementById('progress-circle');
+    const attendanceMessage = document.getElementById('attendance-message');
+
+    const angle = (percentage / 100) * 360;
+
+   
+    if (percentage < 75) {
+        progressCircle.style.background = `conic-gradient(#f44336 ${angle}deg, #dcdcdc ${angle}deg)`; // Red color
+        attendanceMessage.innerHTML = '<h2>CURRENT SEMESTER AVERAGE ATTENDANCE</h2><span style="color: red; font-weight: bold;">Need to attend class regularly</span>';
+    } else {
+        progressCircle.style.background = `conic-gradient(black ${angle}deg, white ${angle}deg)`; // Green color
+        attendanceMessage.innerHTML = '<h2>CURRENT SEMESTER AVERAGE ATTENDANCE</h2><span style="color: black;font-weight: bold;">NO WORRIES!</span>';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP System</title>
+    
+    <!-- Google Fonts: DM Serif Display -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Hide scrollbar but still allow scrolling */
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+            padding-top: 4.375rem; /* Reduced 100px to 70px */
+            
+        }
+
+        body::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari, and Edge */
+        }
+
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4.375rem; /* Reduced 100px to 70px */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0.875rem; /* Reduced 20px to 14px */
+            background-color: #fff;
+            z-index: 1000;
+            animation: slideInFromTop 0.5s ease-out;
+        }
+
+        .logo img {
+            width: 2.1875rem; /* Reduced 50px to 35px */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 3.75rem; /* Reduced 40px to 28px */
+            margin-top: 1.75rem; /* Reduced 40px to 28px */
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 1rem; /* Reduced 20px to 16px */
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in forwards;
+            animation-delay: 0.5s;
+        }
+
+        .sign-in-btn {
+            padding: 0.4375rem 0.875rem; /* Reduced 10px 20px to 7px 14px */
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 0.875rem; /* Reduced 20px to 14px */
+            font-size: 0.875rem; /* Reduced 16px to 14px */
+        }
+
+        .hero {
+            margin-top: 00px;
+            text-align: center;
+            padding: 4.375rem 0.875rem; /* Reduced 100px 20px to 70px 14px */
+            background-color: #fff;
+            animation: slideInFromBottom 0.5s ease-out;
+            margin-bottom: 50px;
+            
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', serif; /* Apply DM Serif Display */
+            font-size: 5.5rem; /* Reduced 64px to 40px */
+            font-weight: bold;
+            margin-bottom: 0.4375rem; /* Reduced 10px to 7px */
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in forwards;
+            animation-delay: 1s;
+            margin-top: 3rem;
+        }
+
+        .hero p {
+            color: #8b5e3c;
+            font-size: 1.125rem; /* Reduced 24px to 18px */
+            margin-bottom: 1.575rem; /* Reduced 20px to 14px */
+            margin-top: 1.875rem; /* Reduced 50px to 30px */
+        }
+
+       
+
+        .dot {
+            height: 0.5625rem; /* Reduced 12px to 9px */
+            width: 0.5625rem; /* Reduced 12px to 9px */
+            background-color: #333;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 0.25rem; /* Reduced 5px to 4px */
+        }
+
+        .tabs {
+            margin: auto;
+            width: 55%;
+            background-color: transparent;
+            border-radius: 3px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            top: -2.1875rem; /* Reduced 50px to 35px */
+            
+            animation: slideInFromRight 0.5s ease-out;
+        }
+
+        .tab {
+            display: flex;
+            height: 2.1875rem; /* Reduced 50px to 35px */
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0);
+            
+        }
+
+        .tab button {
+            background-color: #dcdcdc00;
+            border: none;
+            padding: 0.625rem 1.25rem; /* Reduced 15px 30px to 10px 20px */
+            cursor: pointer;
+            font-size: 1rem; /* Reduced 20px to 16px */
+            margin-right: -0.3125rem; /* Reduced -8px to -5px */
+            border-radius: 0.875rem 0.875rem 0 0; /* Reduced 20px to 14px */
+            opacity: 0;
+            animation: slideInFromTop 0.3s ease-in forwards;
+            animation-delay: 0.3s;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 0.875rem; /* Reduced 20px to 14px */
+            border-radius: 0.875rem; /* Reduced 20px to 14px */
+            background-color: rgba(0, 0, 0, 0);
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Background image with animation */
+        .background-image {
+            background-image: url('/images/home.jpg.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 4.1875rem; /* Reduced 50px to 35px */
+            z-index: 0;
+            height: 40vh; /* Reduced height from 50vh */
+            position: absolute;
+            top: 34rem; /* Reduced 580px to 400px */
+            margin-left: 2.1875rem; /* Reduced 50px to 35px */
+            width: 95%;
+            opacity: 0;
+            transform: translateY(2.1875rem); /* Reduced 50px to 35px */
+            animation: slideUpFadeIn 1s ease-in forwards;
+        }
+
+        .large-circle {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-color: #ccc;
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            z-index: -1;
+        }
+
+        /* Image inside the circle */
+        .circle img {
+            width: 120px;
+            height: auto;
+            position: absolute;
+            top: 10px;
+            left: 5px;
+        }
+
+        .about-us {
+            position: absolute;
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Centering */
+            color: white;
+            text-align: center;
+            font-size: 0.875rem; /* Reduced 16px to 14px */
+            background-color: rgba(0, 0, 0, 0.021);
+            border-radius: 0.625rem; /* Reduced 10px to 8px */
+            font-family: 'Lucida Sans', sans-serif;
+        }
+
+        /* Animations */
+        @keyframes slideInFromTop {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUpFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(2.1875rem); /* Reduced 50px to 35px */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="large-circle"></div> <!-- Large circle -->
+        <div class="circle">
+            <img src="images/logo-removebg-preview.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="facultyhome.html">Faculty Home</a></li>
+                <li><a href="studenthome.html">Student Home</a></li>
+                <li><a href="leaveapplication.html">Apply leave</a></li>
+                <li><a href="notification.html">Notifications</a></li>
+                <li><a href="Login.html" class="sign-in-btn">Sign In</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="background-image">
+            <div class="about-us">
+                Empowering educational institutions through integrated solutions. Discover how our ERP system enhances efficiency and fosters growth.
+            </div>
+        </div>
+
+        <section class="hero">
+            <div class="dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <h1>ERP SYSTEM</h1>
+            <p>Welcome to our ERP system where you can get the required data of yours.</p>
+        </section>
+
+        <div>
+            <div class="tabs">
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'Student')" id="defaultOpen" style="background-color:#333;color:white;">Student</button>
+                    <button class="tablinks" onclick="openTab(event, 'Faculty')" style="background-color:grey;color:white;">Faculty</button>
+                </div>
+
+                <div id="Student" class="tabcontent">
+                    <div style="display: flex; justify-content: space-around; background-color: #333; height: 5rem; border-radius: 0.875rem; padding: 0.875rem;">
+                        <div style="width: 50%; border-right: 2px solid white; padding: 0.4375rem; text-align: center;">
+                            <a href="#" style="color: white; text-decoration: none;">
+                                <h3>Login as student</h3>
+                                <p>If you already have an account, login here.</p>
+                            </a>
+                        </div>
+                        <div style="width: 50%; text-align: center;">
+                            <a href="#" style="color: white; text-decoration: none;">
+                                <h3>Signup as student</h3>
+                                <p>Create a new account if you don't have one yet.</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="Faculty" class="tabcontent">
+                    <div style="display: flex; justify-content: space-around; background-color: #333; height: 5rem; border-radius: 0.875rem; padding: 0.875rem;">
+                        <div style="width: 50%; border-right: 2px solid white; padding: 0.4375rem; text-align: center;">
+                            <a href="#" style="color: white; text-decoration: none;">
+                                <h3>Login as staff</h3>
+                                <p>If you already have an account, login here.</p>
+                            </a>
+                        </div>
+                        <div style="width: 50%; text-align: center;">
+                            <a href="#" style="color: white; text-decoration: none;">
+                                <h3>Signup as staff</h3>
+                                <p>Create a new account if you don't have one yet.</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "grey";
+                tablinks[i].style.color = "white";
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.style.backgroundColor = "#333";
+            evt.currentTarget.style.color = "white";
+        }
+
+        document.getElementById("defaultOpen").click();
+    </script>
+
+</body>
+</html>
