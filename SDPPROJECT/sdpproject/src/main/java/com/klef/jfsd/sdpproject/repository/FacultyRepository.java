@@ -1,5 +1,11 @@
 package com.klef.jfsd.sdpproject.repository;
 
-public interface FacultyRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+
+import com.klef.jfsd.sdpproject.models.Faculty;
+@Repository
+public interface FacultyRepository extends JpaRepository<Faculty,Integer>{
 
 }
